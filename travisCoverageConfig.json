@@ -1,0 +1,11 @@
+{
+    "assemblies": [
+        "Gaillard.SharpCover.Tests/bin/Debug/SharpCover.exe"
+    ],
+    "methodBodyExcludes": [
+        {
+            "method": "System.Void Gaillard.SharpCover.Program::Instrument(Mono.Cecil.Cil.Instruction,Mono.Cecil.MethodReference,Mono.Cecil.MethodDefinition,Mono.Cecil.Cil.ILProcessor,System.String,Gaillard.SharpCover.Program/InstrumentConfig,System.IO.TextWriter,System.Int32&)",
+            "lines": ["handler.FilterStart = pathParamLoadInstruction;"]
+        }
+    ]
+}
