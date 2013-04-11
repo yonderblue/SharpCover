@@ -34,7 +34,8 @@ namespace Gaillard.SharpCover.Tests
         [Test]
         public void Covered()
         {
-            var config = @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*TestTarget"", ""methodInclude"": "".*Covered.*""}";
+            var config =
+                @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*TestTarget"", ""methodInclude"": "".*Covered.*""}";
 
             File.WriteAllText("testConfig.json", config);
 
@@ -52,9 +53,7 @@ namespace Gaillard.SharpCover.Tests
         {
             var config = @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""methodInclude"": "".*UncoveredIf.*""}";
 
-            File.WriteAllText("testConfig.json", config);
-
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 
@@ -73,9 +72,7 @@ namespace Gaillard.SharpCover.Tests
         {
             var config = @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""methodInclude"": "".*UncoveredLeave.*""}";
 
-            File.WriteAllText("testConfig.json", config);
-
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 
@@ -92,9 +89,9 @@ namespace Gaillard.SharpCover.Tests
         [Test]
         public void Nested()
         {
-            File.WriteAllText("testConfig.json", @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*Nested""}");
+            var config = @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*Nested""}";
 
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 
@@ -119,9 +116,7 @@ namespace Gaillard.SharpCover.Tests
     ]
 }";
 
-            File.WriteAllText("testConfig.json", config);
-
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 
@@ -152,9 +147,7 @@ string.Format(@"{{
     ]
 }}", offsets);
 
-            File.WriteAllText("testConfig.json", config);
-
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 
@@ -167,9 +160,9 @@ string.Format(@"{{
         [Test]
         public void Constrained()
         {
-            File.WriteAllText("testConfig.json", @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*Constrained""}");
+            var config = @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*Constrained""}";
 
-            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", config }));
 
             Process.Start(testTargetExePath).WaitForExit();
 

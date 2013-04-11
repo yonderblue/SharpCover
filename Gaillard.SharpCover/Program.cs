@@ -33,7 +33,10 @@ namespace Gaillard.SharpCover
 
             public InstrumentConfig(string json)
             {
-                var config = JObject.Parse(File.ReadAllText(json));
+                if (File.Exists(json))
+                    json = File.ReadAllText(json);
+
+                var config = JObject.Parse(json);
 
                 AssemblyPaths = config.SelectToken("assemblies", true).Values<string>();
                 TypeInclude = ((string)config.SelectToken("typeInclude")) ?? ".*";
