@@ -3,3 +3,6 @@ services: mongodb
 install:
   - sudo apt-get install mono-devel nunit-console
 script: sh build.sh
+branches:
+  only:
+    - master
