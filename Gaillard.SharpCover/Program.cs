@@ -179,7 +179,7 @@ namespace Gaillard.SharpCover
             if (!Regex.IsMatch(type.FullName, config.TypeInclude) || Regex.IsMatch(type.FullName, config.TypeExclude))
                 return;
 
-            foreach (var method in type.Methods)
+            foreach (var method in type.Methods.Where(m => m.HasBody))
                 Instrument(method, countReference, config, writer, ref instrumentIndex);
         }
 
