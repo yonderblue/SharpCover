@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
 
-[assembly: AssemblyVersion("1.0.0.*")]
+[assembly: AssemblyVersion("1.0.1.*")]
 
 namespace Gaillard.SharpCover
 {
