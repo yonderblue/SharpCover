@@ -32,6 +32,23 @@ namespace Gaillard.SharpCover.Tests
         }
 
         [Test]
+        public void NoBody()
+        {
+            var config =
+                @"{""assemblies"": [""bin/Debug/TestTarget.exe""], ""typeInclude"": "".*Tests.*Event.*""}";
+
+            File.WriteAllText("testConfig.json", config);
+
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+
+            Process.Start(testTargetExePath).WaitForExit();
+
+            Assert.AreEqual(0, Program.Main(new []{ "check" }));
+
+            Assert.IsTrue(File.ReadLines(Program.RESULTS_FILENAME).Any());
+        }
+
+        [Test]
         public void Covered()
         {
             var config =
