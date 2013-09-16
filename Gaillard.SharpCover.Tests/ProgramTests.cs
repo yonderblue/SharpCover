@@ -10,7 +10,6 @@ namespace Gaillard.SharpCover.Tests
     public sealed class ProgramTests
     {
         private string testTargetExePath;
-        private string testTargetDllPath;
         private bool onDotNet;
 
         [SetUp]
