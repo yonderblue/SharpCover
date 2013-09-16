@@ -117,6 +117,14 @@ namespace Gaillard.SharpCover.Tests
             }
         }
 
+        public static void LibraryInterfaceEvent()
+        {
+            var eventUsage = new Gaillard.SharpCover.Tests.EventUsage();
+            eventUsage.TheEvent += eventUsage.EventMethod;
+            eventUsage.RaiseEvent();
+            eventUsage.TheEvent -= eventUsage.EventMethod;
+        }
+
         private sealed class Disposable : IDisposable
         {
             public void Dispose() { }
@@ -129,7 +137,7 @@ namespace Gaillard.SharpCover.Tests
                 return value.ToString();
             }
         }
-        
+
         public static void Main(string[] args)
         {
             new TestTarget().Covered();
@@ -139,6 +147,7 @@ namespace Gaillard.SharpCover.Tests
             UncoveredLeave();
             OffsetExcludes();
             LineExcludes();
+            LibraryInterfaceEvent();
 
             new Constrained().ToString(5);
         }

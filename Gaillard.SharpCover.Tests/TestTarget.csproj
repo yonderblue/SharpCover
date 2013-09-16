@@ -11,5 +11,8 @@
   <ItemGroup>
     <Compile Include="TestTarget.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="TestLibrary.csproj" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />
 </Project>

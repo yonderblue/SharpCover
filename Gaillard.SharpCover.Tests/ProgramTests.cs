@@ -10,6 +10,7 @@ namespace Gaillard.SharpCover.Tests
     public sealed class ProgramTests
     {
         private string testTargetExePath;
+        private string testTargetDllPath;
         private bool onDotNet;
 
         [SetUp]
@@ -29,6 +30,23 @@ namespace Gaillard.SharpCover.Tests
             var process = Process.Start(buildCommand, "TestTarget.csproj");
             process.WaitForExit();
             Assert.AreEqual(0, process.ExitCode);
+        }
+
+        [Test]
+        public void NoBody()
+        {
+            var config =
+                @"{""assemblies"": [""bin/Debug/TestLibrary.dll""], ""typeInclude"": "".*Tests.*Event.*""}";
+
+            File.WriteAllText("testConfig.json", config);
+
+            Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
+
+            Process.Start(testTargetExePath).WaitForExit();
+
+            Assert.AreEqual(0, Program.Main(new []{ "check" }));
+
+            Assert.IsTrue(File.ReadLines(Program.RESULTS_FILENAME).Any());
         }
 
         [Test]
