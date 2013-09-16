@@ -2,6 +2,27 @@
 
 namespace Gaillard.SharpCover.Tests
 {
+    public interface IEvent
+    {
+        event EventHandler TheEvent;
+    }
+
+    public class EventUsage : IEvent
+    {
+        public event EventHandler TheEvent;
+
+        public void EventMethod(object sender, EventArgs e)
+        {
+            var i = 0;
+            i += 1;
+        }
+
+        public void RaiseEvent()
+        {
+            TheEvent(null, null);
+        }
+    }
+
     public sealed class TestTarget
     {
         public sealed class Nested
@@ -129,7 +150,7 @@ namespace Gaillard.SharpCover.Tests
                 return value.ToString();
             }
         }
-        
+
         public static void Main(string[] args)
         {
             new TestTarget().Covered();
@@ -139,6 +160,11 @@ namespace Gaillard.SharpCover.Tests
             UncoveredLeave();
             OffsetExcludes();
             LineExcludes();
+
+            var eventUsage = new Gaillard.SharpCover.Tests.EventUsage();
+            eventUsage.TheEvent += eventUsage.EventMethod;
+            eventUsage.RaiseEvent();
+            eventUsage.TheEvent -= eventUsage.EventMethod;
 
             new Constrained().ToString(5);
         }
