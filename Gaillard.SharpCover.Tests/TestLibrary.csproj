@@ -1,7 +1,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Rebuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <AssemblyName>TestTarget</AssemblyName>
+    <OutputType>Library</OutputType>
+    <AssemblyName>TestLibrary</AssemblyName>
     <WarningLevel>4</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -9,10 +9,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestTarget.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="TestLibrary.csproj" />
+    <Compile Include="TestLibrary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />
 </Project>
