@@ -9,17 +9,20 @@ namespace Gaillard.SharpCover
 {
     public static class Counter
     {
+        private static object mutex = new object();
         private static BinaryWriter writer;
         private static readonly ISet<int> indexes = new HashSet<int>();
 
         public static void Count(string path, int index)
         {
-            if (writer == null) {
-                writer = new BinaryWriter(File.Open(path, FileMode.Append));
-            }
+            lock (mutex) {
+                if (writer == null) {
+                    writer = new BinaryWriter(File.Open(path, FileMode.Append));
+                }
 
-            if (indexes.Add(index))
-                writer.Write(index);
+                if (indexes.Add(index))
+                    writer.Write(index);
+            }
         }
     }
 }
