@@ -146,7 +146,12 @@ namespace Gaillard.SharpCover
             }
         }
 
-        private static void Instrument(MethodDefinition method, MethodReference countReference, InstrumentConfig config, TextWriter writer, ref int instrumentIndex)
+        private static void Instrument(
+            MethodDefinition method,
+            MethodReference countReference,
+            InstrumentConfig config,
+            TextWriter writer,
+            ref int instrumentIndex)
         {
             if (!Regex.IsMatch(method.FullName, config.MethodInclude) || Regex.IsMatch(method.FullName, config.MethodExclude))
                 return;
@@ -171,7 +176,12 @@ namespace Gaillard.SharpCover
             method.Body.OptimizeMacros();
         }
 
-        private static void Instrument(TypeDefinition type, MethodReference countReference, InstrumentConfig config, TextWriter writer, ref int instrumentIndex)
+        private static void Instrument(
+            TypeDefinition type,
+            MethodReference countReference,
+            InstrumentConfig config,
+            TextWriter writer,
+            ref int instrumentIndex)
         {
             if (type.FullName == "<Module>")
                 return;
