@@ -16,7 +16,7 @@ namespace Gaillard.SharpCover
     public static class Program
     {
         public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "MISS ! ";
-        private const string KNOWNS_FILENAME = "coverageKnowns.txt", HITS_FILENAME = "coverageHits.txt", MISSES_FILENAME = "coverageMisses.txt";
+        private const string KNOWNS_FILENAME = "coverageKnowns.txt", HITS_FILENAME = "coverageHits.txt";
         private static readonly MethodInfo countMethodInfo = typeof(Counter).GetMethod("Count");
 
         //immutable
@@ -236,7 +236,6 @@ namespace Gaillard.SharpCover
 
             File.Delete(HITS_FILENAME);
             File.Delete(KNOWNS_FILENAME);
-            File.Delete(MISSES_FILENAME);
 
             var missRatio = (double)missCount / (double)knownIndex;
             var coverage = Math.Round((1.0 - missRatio) * 100.0, 2);
