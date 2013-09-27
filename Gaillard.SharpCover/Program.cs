@@ -16,7 +16,7 @@ namespace Gaillard.SharpCover
     public static class Program
     {
         public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "MISS ! ";
-        private const string KNOWNS_FILENAME = "coverageKnowns.txt", HITS_FILENAME = "coverageHits.txt";
+        private const string KNOWNS_FILENAME = "coverageKnowns", HITS_FILENAME = "coverageHits";
         private static readonly MethodInfo countMethodInfo = typeof(Counter).GetMethod("Count");
 
         //immutable
