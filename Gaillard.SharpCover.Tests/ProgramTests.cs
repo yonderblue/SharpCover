@@ -56,6 +56,9 @@ namespace Gaillard.SharpCover.Tests
 
             File.WriteAllText("testConfig.json", config);
 
+            //write some extraneous hit files to make sure they dont affect run
+            File.WriteAllText(Program.HITS_FILENAME_PREFIX, "doesnt matter");
+
             Assert.AreEqual(0, Program.Main(new []{ "instrument", "testConfig.json" }));
 
             Process.Start(testTargetExePath).WaitForExit();

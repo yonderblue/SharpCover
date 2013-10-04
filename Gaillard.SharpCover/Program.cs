@@ -9,14 +9,14 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
-[assembly: AssemblyVersion("1.0.1.*")]
+[assembly: AssemblyVersion("1.0.2.*")]
 
 namespace Gaillard.SharpCover
 {
     public static class Program
     {
-        public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "MISS ! ";
-        private const string KNOWNS_FILENAME = "coverageKnowns", HITS_FILENAME = "coverageHits";
+        public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "MISS ! ", HITS_FILENAME_PREFIX = "coverageHits";
+        private const string KNOWNS_FILENAME = "coverageKnowns";
         private static readonly MethodInfo countMethodInfo = typeof(Counter).GetMethod("Count");
 
         //immutable
@@ -27,7 +27,7 @@ namespace Gaillard.SharpCover
                                    TypeExclude,
                                    MethodInclude,
                                    MethodExclude,
-                                   HitsPath = Path.Combine(Directory.GetCurrentDirectory(), HITS_FILENAME);
+                                   HitsPathPrefix = Path.Combine(Directory.GetCurrentDirectory(), HITS_FILENAME_PREFIX);
             private readonly IDictionary<string, IEnumerable<int>> methodOffsetExcludes = new Dictionary<string, IEnumerable<int>>();
             private readonly IDictionary<string, IEnumerable<string>> methodLineExcludes = new Dictionary<string, IEnumerable<string>>();
 
@@ -100,7 +100,7 @@ namespace Gaillard.SharpCover
 
             writer.WriteLine(line);
 
-            var pathParamLoadInstruction = worker.Create(OpCodes.Ldstr, config.HitsPath);
+            var pathParamLoadInstruction = worker.Create(OpCodes.Ldstr, config.HitsPathPrefix);
             var lineParamLoadInstruction = worker.Create(OpCodes.Ldc_I4, instrumentIndex);
             var registerInstruction = worker.Create(OpCodes.Call, countReference);
 
@@ -211,11 +211,15 @@ namespace Gaillard.SharpCover
 
         private static int Check()
         {
+            var currentDirectory = Directory.GetCurrentDirectory();
+
             var hits = new HashSet<int>();
-            using (var hitsStream = File.OpenRead(HITS_FILENAME))
-            using (var hitsReader = new BinaryReader(hitsStream)) {
-                while(hitsStream.Position < hitsStream.Length)
-                    hits.Add(hitsReader.ReadInt32());
+            foreach (var hitsPath in Directory.GetFiles(currentDirectory, HITS_FILENAME_PREFIX + "*")) {
+                using (var hitsStream = File.OpenRead(hitsPath))
+                using (var hitsReader = new BinaryReader(hitsStream)) {
+                    while (hitsStream.Position < hitsStream.Length)
+                        hits.Add (hitsReader.ReadInt32());
+                }
             }
 
             var missCount = 0;
@@ -234,7 +238,9 @@ namespace Gaillard.SharpCover
                 }
             }
 
-            File.Delete(HITS_FILENAME);
+            //cleanup to leave only results file
+            foreach (var hitsPath in Directory.GetFiles(currentDirectory, HITS_FILENAME_PREFIX + "*"))
+                File.Delete(hitsPath);
             File.Delete(KNOWNS_FILENAME);
 
             var missRatio = (double)missCount / (double)knownIndex;
@@ -251,14 +257,14 @@ namespace Gaillard.SharpCover
                 if (args[0] == "instrument") {
                     var config = new InstrumentConfig(args[1]);
 
-                    //so it exists regardless and is deleted
-                    File.WriteAllText(KNOWNS_FILENAME, string.Empty);
-                    File.WriteAllText(config.HitsPath, string.Empty);
+                    //delete existing hit files generatig during program exercising
+                    foreach (var hitsPath in Directory.GetFiles(Directory.GetCurrentDirectory(), HITS_FILENAME_PREFIX + "*"))
+                        File.Delete(hitsPath);
 
                     //used to track the line index of the instrumented instruction in the knowns file
                     var instrumentIndex = 0;
 
-                    using (var writer = new StreamWriter(KNOWNS_FILENAME, true)) {
+                    using (var writer = new StreamWriter(KNOWNS_FILENAME)) {//overwrites
                         foreach (var assemblyPath in config.AssemblyPaths)
                             Instrument(assemblyPath, config, writer, ref instrumentIndex);
                     }

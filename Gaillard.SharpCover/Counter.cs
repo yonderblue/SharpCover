@@ -2,20 +2,30 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
+using System.Diagnostics;
 
-[assembly: AssemblyVersion("1.0.1.*")]
+[assembly: AssemblyVersion("1.0.2.*")]
 
 namespace Gaillard.SharpCover
 {
     public static class Counter
     {
-        private static BinaryWriter writer;
-        private static readonly ISet<int> indexes = new HashSet<int>();
+        [ThreadStatic]
+        private static HashSet<int> indexes;
 
-        public static void Count(string path, int index)
+        [ThreadStatic]
+        private static BinaryWriter writer;
+
+        [ThreadStatic]
+        private static string path;
+
+        public static void Count(string pathPrefix, int index)
         {
-            if (writer == null) {
-                writer = new BinaryWriter(File.Open(path, FileMode.Append));
+            if (path == null) {
+                path = pathPrefix + "|" + Process.GetCurrentProcess().Id + "|" + Thread.CurrentThread.ManagedThreadId;
+                indexes = new HashSet<int>();
+                writer = new BinaryWriter(File.Open(path, FileMode.CreateNew));
             }
 
             if (indexes.Add(index))
