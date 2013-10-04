@@ -15,8 +15,8 @@ namespace Gaillard.SharpCover
 {
     public static class Program
     {
-        public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "MISS ! ", HITS_FILENAME_PREFIX = "coverageHits";
-        private const string KNOWNS_FILENAME = "coverageKnowns";
+        public const string RESULTS_FILENAME = "coverageResults.txt", MISS_PREFIX = "-", HITS_FILENAME_PREFIX = "coverageHits";
+        private const string KNOWNS_FILENAME = "coverageKnowns", HIT_PREFIX = "+", DELIMITER = "|", ESCAPED_DELIMITER = "_PIPE_";
         private static readonly MethodInfo countMethodInfo = typeof(Counter).GetMethod("Count");
 
         //immutable
@@ -92,11 +92,11 @@ namespace Gaillard.SharpCover
             if (instruction.SequencePoint != null)
                 lineNum = instruction.SequencePoint.StartLine;
 
-            var line = string.Join(", ",
-                                   "Method: " + method.FullName,
-                                   "Line: " + lineNum,
-                                   "Offset: " + instruction.Offset,
-                                   "Instruction: " + instruction);
+            var line = string.Join(DELIMITER,
+                                   method.FullName.Replace(DELIMITER, ESCAPED_DELIMITER),
+                                   lineNum,
+                                   instruction.Offset,
+                                   instruction.ToString().Replace(DELIMITER, ESCAPED_DELIMITER));
 
             writer.WriteLine(line);
 
@@ -228,7 +228,7 @@ namespace Gaillard.SharpCover
             using (var resultsWriter = new StreamWriter(RESULTS_FILENAME)) {//overwrites
                 foreach (var knownLine in File.ReadLines(KNOWNS_FILENAME)) {
                     if (hits.Contains(knownIndex))
-                        resultsWriter.WriteLine(knownLine);
+                        resultsWriter.WriteLine(HIT_PREFIX + knownLine);
                     else {
                         resultsWriter.WriteLine(MISS_PREFIX + knownLine);
                         ++missCount;
@@ -251,6 +251,45 @@ namespace Gaillard.SharpCover
             return missCount == 0 ? 0 : 1;
         }
 
+        private static int ViewBasic()
+        {
+            var tempSuffix = "temp";
+            var methods = new HashSet<string>();
+            var i = 0;
+            var instructionHeader = "       Line,    Offset, Instruction";
+
+            using (var writer = new StreamWriter(RESULTS_FILENAME + tempSuffix)) {//overwrites
+                foreach (var line in File.ReadLines(RESULTS_FILENAME)) {
+                    var lineParts = line.Substring(1).Split(new []{ DELIMITER }, StringSplitOptions.None);
+                    var methodLine = "Method: " + lineParts[0].Replace(ESCAPED_DELIMITER, DELIMITER);
+
+                    if (methods.Add(lineParts[0])) {
+                        writer.WriteLine();
+                        writer.WriteLine(methodLine);
+                        writer.WriteLine(instructionHeader);
+                        i = 0;
+                    } else if (i > 30) {
+                        writer.WriteLine(methodLine);
+                        writer.WriteLine(instructionHeader);
+                        i = 0;
+                    }
+
+                    writer.WriteLine("{0}{1,10},{2,10}, {3}",//10 is max number of Int32 digits
+                                     line[0],//hit or miss prefix
+                                     lineParts[1],
+                                     lineParts[2],
+                                     lineParts[3].Replace(ESCAPED_DELIMITER, DELIMITER));
+
+                    ++i;
+                }
+            }
+
+            File.Delete(RESULTS_FILENAME);
+            File.Move(RESULTS_FILENAME + tempSuffix, RESULTS_FILENAME);
+
+            return 0;
+        }
+
         public static int Main(string[] args)
         {
             try {
@@ -270,10 +309,16 @@ namespace Gaillard.SharpCover
                     }
 
                     return 0;
-                } else if (args[0] == "check")
+                } else if (args[0] == "check") {
                     return Check();
+                } else if (args[0] == "view") {
+                    if (args[1] == "basic") {
+                        return ViewBasic();
+                    }
 
-                Console.Error.WriteLine("need 'instrument' or 'check' command");
+                    Console.Error.WriteLine("'view' currently only supports the 'basic' sub command");
+                } else
+                    Console.Error.WriteLine("need 'instrument', 'check' or 'view' command");
             } catch (Exception e) {
                 Console.Error.WriteLine(e);
             }
