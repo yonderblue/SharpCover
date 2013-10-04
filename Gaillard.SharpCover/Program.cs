@@ -218,7 +218,7 @@ namespace Gaillard.SharpCover
                 using (var hitsStream = File.OpenRead(hitsPath))
                 using (var hitsReader = new BinaryReader(hitsStream)) {
                     while (hitsStream.Position < hitsStream.Length)
-                        hits.Add (hitsReader.ReadInt32());
+                        hits.Add(hitsReader.ReadInt32());
                 }
             }
 
