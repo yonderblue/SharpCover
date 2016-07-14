@@ -1,0 +1,108 @@
+.method private hidebysig static void  Instrument(string assemblyPath,
+                                                  class Gaillard.SharpCover.Program/InstrumentConfig config,
+                                                  class [mscorlib]System.IO.TextWriter writer,
+                                                  int32& instrumentIndex) cil managed
+{
+  // Code size       192 (0xc0)
+  .maxstack  5
+  .locals init ([0] class [Mono.Cecil]Mono.Cecil.AssemblyDefinition 'assembly',
+           [1] class [Mono.Cecil]Mono.Cecil.MethodReference countReference,
+           [2] class [Mono.Cecil]Mono.Cecil.TypeDefinition 'type',
+           [3] string counterPath,
+           [4] class [Mono.Cecil]Mono.Cecil.ReaderParameters '<>g__initLocal4',
+           [5] class [Mono.Cecil]Mono.Cecil.WriterParameters '<>g__initLocal5',
+           [6] class [mscorlib]System.Collections.Generic.IEnumerator`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition> CS$5$0000,
+           [7] bool CS$4$0001)
+  IL_0000:  nop
+  IL_0001:  ldarg.0
+  IL_0002:  newobj     instance void [Mono.Cecil]Mono.Cecil.ReaderParameters::.ctor()
+  IL_0007:  stloc.s    '<>g__initLocal4'
+  IL_0009:  ldloc.s    '<>g__initLocal4'
+  IL_000b:  ldc.i4.1
+  IL_000c:  callvirt   instance void [Mono.Cecil]Mono.Cecil.ReaderParameters::set_ReadSymbols(bool)
+  IL_0011:  nop
+  IL_0012:  ldloc.s    '<>g__initLocal4'
+  IL_0014:  call       class [Mono.Cecil]Mono.Cecil.AssemblyDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::ReadAssembly(string,
+                                                                                                                               class [Mono.Cecil]Mono.Cecil.ReaderParameters)
+  IL_0019:  stloc.0
+  IL_001a:  ldloc.0
+  IL_001b:  callvirt   instance class [Mono.Cecil]Mono.Cecil.ModuleDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::get_MainModule()
+  IL_0020:  ldsfld     class [mscorlib]System.Reflection.MethodInfo Gaillard.SharpCover.Program::countMethodInfo
+  IL_0025:  callvirt   instance class [Mono.Cecil]Mono.Cecil.MethodReference [Mono.Cecil]Mono.Cecil.ModuleDefinition::Import(class [mscorlib]System.Reflection.MethodBase)
+  IL_002a:  stloc.1
+  IL_002b:  nop
+  IL_002c:  ldloc.0
+  IL_002d:  callvirt   instance class [Mono.Cecil]Mono.Cecil.ModuleDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::get_MainModule()
+  IL_0032:  callvirt   instance class [mscorlib]System.Collections.Generic.IEnumerable`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition> [Mono.Cecil]Mono.Cecil.ModuleDefinition::GetTypes()
+  IL_0037:  callvirt   instance class [mscorlib]System.Collections.Generic.IEnumerator`1<!0> class [mscorlib]System.Collections.Generic.IEnumerable`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition>::GetEnumerator()
+  IL_003c:  stloc.s    CS$5$0000
+  .try
+  {
+    IL_003e:  br.s       IL_0053
+    IL_0040:  ldloc.s    CS$5$0000
+    IL_0042:  callvirt   instance !0 class [mscorlib]System.Collections.Generic.IEnumerator`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition>::get_Current()
+    IL_0047:  stloc.2
+    IL_0048:  ldloc.2
+    IL_0049:  ldloc.1
+    IL_004a:  ldarg.1
+    IL_004b:  ldarg.2
+    IL_004c:  ldarg.3
+    IL_004d:  call       void Gaillard.SharpCover.Program::Instrument(class [Mono.Cecil]Mono.Cecil.TypeDefinition,
+                                                                      class [Mono.Cecil]Mono.Cecil.MethodReference,
+                                                                      class Gaillard.SharpCover.Program/InstrumentConfig,
+                                                                      class [mscorlib]System.IO.TextWriter,
+                                                                      int32&)
+    IL_0052:  nop
+    IL_0053:  ldloc.s    CS$5$0000
+    IL_0055:  callvirt   instance bool [mscorlib]System.Collections.IEnumerator::MoveNext()
+    IL_005a:  stloc.s    CS$4$0001
+    IL_005c:  ldloc.s    CS$4$0001
+    IL_005e:  brtrue.s   IL_0040
+    IL_0060:  leave.s    IL_0076
+  }  // end .try
+  finally
+  {
+    IL_0062:  ldloc.s    CS$5$0000
+    IL_0064:  ldnull
+    IL_0065:  ceq
+    IL_0067:  stloc.s    CS$4$0001
+    IL_0069:  ldloc.s    CS$4$0001
+    IL_006b:  brtrue.s   IL_0075
+    IL_006d:  ldloc.s    CS$5$0000
+    IL_006f:  callvirt   instance void [mscorlib]System.IDisposable::Dispose()
+    IL_0074:  nop
+    IL_0075:  endfinally
+  }  // end handler
+  IL_0076:  nop
+  IL_0077:  ldloc.0
+  IL_0078:  ldarg.0
+  IL_0079:  newobj     instance void [Mono.Cecil]Mono.Cecil.WriterParameters::.ctor()
+  IL_007e:  stloc.s    '<>g__initLocal5'
+  IL_0080:  ldloc.s    '<>g__initLocal5'
+  IL_0082:  ldc.i4.1
+  IL_0083:  callvirt   instance void [Mono.Cecil]Mono.Cecil.WriterParameters::set_WriteSymbols(bool)
+  IL_0088:  nop
+  IL_0089:  ldloc.s    '<>g__initLocal5'
+  IL_008b:  callvirt   instance void [Mono.Cecil]Mono.Cecil.AssemblyDefinition::Write(string,
+                                                                                      class [Mono.Cecil]Mono.Cecil.WriterParameters)
+  IL_0090:  nop
+  IL_0091:  ldtoken    [Counter]Gaillard.SharpCover.Counter
+  IL_0096:  call       class [mscorlib]System.Type [mscorlib]System.Type::GetTypeFromHandle(valuetype [mscorlib]System.RuntimeTypeHandle)
+  IL_009b:  callvirt   instance class [mscorlib]System.Reflection.Assembly [mscorlib]System.Type::get_Assembly()
+  IL_00a0:  callvirt   instance string [mscorlib]System.Reflection.Assembly::get_Location()
+  IL_00a5:  stloc.3
+  IL_00a6:  ldloc.3
+  IL_00a7:  ldarg.0
+  IL_00a8:  call       string [mscorlib]System.IO.Path::GetDirectoryName(string)
+  IL_00ad:  ldloc.3
+  IL_00ae:  call       string [mscorlib]System.IO.Path::GetFileName(string)
+  IL_00b3:  call       string [mscorlib]System.IO.Path::Combine(string,
+                                                                string)
+  IL_00b8:  ldc.i4.1
+  IL_00b9:  call       void [mscorlib]System.IO.File::Copy(string,
+                                                           string,
+                                                           bool)
+  IL_00be:  nop
+  IL_00bf:  ret
+} // end of method Program::Instrument
+
