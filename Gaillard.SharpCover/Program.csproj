@@ -33,6 +33,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="HitCounter.cs" />
+    <Compile Include="HtmlConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\normalize.css">
+      <LogicalName>SharpCoverHtmlConverter.Resources.normalize.css</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\toggleScript.js">
+      <LogicalName>SharpCoverHtmlConverter.Resources.toggleScript.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\jquery.js">
+      <LogicalName>SharpCoverHtmlConverter.Resources.jquery.js</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
