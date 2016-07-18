@@ -315,8 +315,11 @@ namespace Gaillard.SharpCover
                     if (args[1] == "basic") {
                         return ViewBasic();
                     }
+                    else if (args[1] == "html"){
+                        return HtmlConverter.ViewHtml(RESULTS_FILENAME, args);
+                    }
 
-                    Console.Error.WriteLine("'view' currently only supports the 'basic' sub command");
+                    Console.Error.WriteLine("'view' currently only supports the 'basic' and 'html' sub command");
                 } else
                     Console.Error.WriteLine("need 'instrument', 'check' or 'view' command");
             } catch (Exception e) {
