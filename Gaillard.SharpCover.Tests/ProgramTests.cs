@@ -22,7 +22,7 @@ namespace Gaillard.SharpCover.Tests
                 buildCommand = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe";
                 testTargetExePath = @"bin\Debug\TestTarget.exe";
             } else {
-                buildCommand = "/usr/bin/xbuild";
+                buildCommand = "xbuild";
                 testTargetExePath = "bin/Debug/TestTarget.exe";
             }
 
