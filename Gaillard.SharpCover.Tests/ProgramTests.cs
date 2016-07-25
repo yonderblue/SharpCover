@@ -77,7 +77,7 @@ namespace Gaillard.SharpCover.Tests
 
             Process.Start(testTargetExePath).WaitForExit();
 
-            Assert.AreEqual(1, Program.Main(new []{ "check" }));
+            Assert.AreEqual(0, Program.Main(new []{ "check" }));
 
             var missCount = File.ReadLines(Program.RESULTS_FILENAME).Where(l => l.StartsWith(Program.MISS_PREFIX)).Count();
             var knownCount = File.ReadLines(Program.RESULTS_FILENAME).Count();
@@ -96,7 +96,7 @@ namespace Gaillard.SharpCover.Tests
 
             Process.Start(testTargetExePath).WaitForExit();
 
-            Assert.AreEqual(1, Program.Main(new []{ "check" }));
+            Assert.AreEqual(0, Program.Main(new []{ "check" }));
 
             var missCount = File.ReadLines(Program.RESULTS_FILENAME).Where(l => l.StartsWith(Program.MISS_PREFIX)).Count();
             var knownCount = File.ReadLines(Program.RESULTS_FILENAME).Count();
