@@ -248,7 +248,7 @@ namespace Gaillard.SharpCover
 
             Console.WriteLine(string.Format("Overall coverage was {0}%.", coverage));
 
-            return missCount == 0 ? 0 : 1;
+            return 0;
         }
 
         public static int Main(string[] args)
