@@ -1,0 +1,412 @@
+.method private hidebysig static void  Instrument(string assemblyPath,
+                                                  class Gaillard.SharpCover.Program/InstrumentConfig config,
+                                                  class [mscorlib]System.IO.TextWriter writer,
+                                                  int32& instrumentIndex) cil managed
+{
+  // Code size       1341 (0x53d)
+  .maxstack  7
+  .locals init ([0] class [Mono.Cecil]Mono.Cecil.AssemblyDefinition 'assembly',
+           [1] class [Mono.Cecil]Mono.Cecil.MethodReference countReference,
+           [2] class [Mono.Cecil]Mono.Cecil.TypeDefinition 'type',
+           [3] string counterPath,
+           [4] class [Mono.Cecil]Mono.Cecil.ReaderParameters '<>g__initLocal4',
+           [5] class [Mono.Cecil]Mono.Cecil.WriterParameters '<>g__initLocal5',
+           [6] class [mscorlib]System.Collections.Generic.IEnumerator`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition> CS$5$0000,
+           [7] bool CS$4$0001)
+  IL_0000:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0005:  ldc.i4     0x1ef
+  IL_000a:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_000f:  nop
+  IL_0010:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0015:  ldc.i4     0x1f0
+  IL_001a:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_001f:  ldarg.0
+  IL_0020:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0025:  ldc.i4     0x1f1
+  IL_002a:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_002f:  newobj     instance void [Mono.Cecil]Mono.Cecil.ReaderParameters::.ctor()
+  IL_0034:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0039:  ldc.i4     0x1f2
+  IL_003e:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0043:  stloc.s    '<>g__initLocal4'
+  IL_0045:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_004a:  ldc.i4     0x1f3
+  IL_004f:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0054:  ldloc.s    '<>g__initLocal4'
+  IL_0056:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_005b:  ldc.i4     0x1f4
+  IL_0060:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0065:  ldc.i4.1
+  IL_0066:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_006b:  ldc.i4     0x1f5
+  IL_0070:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0075:  callvirt   instance void [Mono.Cecil]Mono.Cecil.ReaderParameters::set_ReadSymbols(bool)
+  IL_007a:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_007f:  ldc.i4     0x1f6
+  IL_0084:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0089:  nop
+  IL_008a:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_008f:  ldc.i4     0x1f7
+  IL_0094:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0099:  ldloc.s    '<>g__initLocal4'
+  IL_009b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00a0:  ldc.i4     0x1f8
+  IL_00a5:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_00aa:  call       class [Mono.Cecil]Mono.Cecil.AssemblyDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::ReadAssembly(string,
+                                                                                                                               class [Mono.Cecil]Mono.Cecil.ReaderParameters)
+  IL_00af:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00b4:  ldc.i4     0x1f9
+  IL_00b9:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_00be:  stloc.0
+  IL_00bf:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00c4:  ldc.i4     0x1fa
+  IL_00c9:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_00ce:  ldloc.0
+  IL_00cf:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00d4:  ldc.i4     0x1fb
+  IL_00d9:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_00de:  callvirt   instance class [Mono.Cecil]Mono.Cecil.ModuleDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::get_MainModule()
+  IL_00e3:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00e8:  ldc.i4     0x1fc
+  IL_00ed:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_00f2:  ldsfld     class [mscorlib]System.Reflection.MethodInfo Gaillard.SharpCover.Program::countMethodInfo
+  IL_00f7:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_00fc:  ldc.i4     0x1fd
+  IL_0101:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0106:  callvirt   instance class [Mono.Cecil]Mono.Cecil.MethodReference [Mono.Cecil]Mono.Cecil.ModuleDefinition::Import(class [mscorlib]System.Reflection.MethodBase)
+  IL_010b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0110:  ldc.i4     0x1fe
+  IL_0115:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_011a:  stloc.1
+  IL_011b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0120:  ldc.i4     0x1ff
+  IL_0125:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_012a:  nop
+  IL_012b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0130:  ldc.i4     0x200
+  IL_0135:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_013a:  ldloc.0
+  IL_013b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0140:  ldc.i4     0x201
+  IL_0145:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_014a:  callvirt   instance class [Mono.Cecil]Mono.Cecil.ModuleDefinition [Mono.Cecil]Mono.Cecil.AssemblyDefinition::get_MainModule()
+  IL_014f:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0154:  ldc.i4     0x202
+  IL_0159:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_015e:  callvirt   instance class [mscorlib]System.Collections.Generic.IEnumerable`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition> [Mono.Cecil]Mono.Cecil.ModuleDefinition::GetTypes()
+  IL_0163:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0168:  ldc.i4     0x203
+  IL_016d:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0172:  callvirt   instance class [mscorlib]System.Collections.Generic.IEnumerator`1<!0> class [mscorlib]System.Collections.Generic.IEnumerable`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition>::GetEnumerator()
+  IL_0177:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_017c:  ldc.i4     0x204
+  IL_0181:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0186:  stloc.s    CS$5$0000
+  .try
+  {
+    IL_0188:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_018d:  ldc.i4     0x205
+    IL_0192:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0197:  br         IL_0245
+    IL_019c:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01a1:  ldc.i4     0x206
+    IL_01a6:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_01ab:  ldloc.s    CS$5$0000
+    IL_01ad:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01b2:  ldc.i4     0x207
+    IL_01b7:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_01bc:  callvirt   instance !0 class [mscorlib]System.Collections.Generic.IEnumerator`1<class [Mono.Cecil]Mono.Cecil.TypeDefinition>::get_Current()
+    IL_01c1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01c6:  ldc.i4     0x208
+    IL_01cb:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_01d0:  stloc.2
+    IL_01d1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01d6:  ldc.i4     0x209
+    IL_01db:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_01e0:  ldloc.2
+    IL_01e1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01e6:  ldc.i4     0x20a
+    IL_01eb:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_01f0:  ldloc.1
+    IL_01f1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_01f6:  ldc.i4     0x20b
+    IL_01fb:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0200:  ldarg.1
+    IL_0201:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0206:  ldc.i4     0x20c
+    IL_020b:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0210:  ldarg.2
+    IL_0211:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0216:  ldc.i4     0x20d
+    IL_021b:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0220:  ldarg.3
+    IL_0221:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0226:  ldc.i4     0x20e
+    IL_022b:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0230:  call       void Gaillard.SharpCover.Program::Instrument(class [Mono.Cecil]Mono.Cecil.TypeDefinition,
+                                                                      class [Mono.Cecil]Mono.Cecil.MethodReference,
+                                                                      class Gaillard.SharpCover.Program/InstrumentConfig,
+                                                                      class [mscorlib]System.IO.TextWriter,
+                                                                      int32&)
+    IL_0235:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_023a:  ldc.i4     0x20f
+    IL_023f:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0244:  nop
+    IL_0245:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_024a:  ldc.i4     0x210
+    IL_024f:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0254:  ldloc.s    CS$5$0000
+    IL_0256:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_025b:  ldc.i4     0x211
+    IL_0260:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0265:  callvirt   instance bool [mscorlib]System.Collections.IEnumerator::MoveNext()
+    IL_026a:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_026f:  ldc.i4     0x212
+    IL_0274:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0279:  stloc.s    CS$4$0001
+    IL_027b:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0280:  ldc.i4     0x213
+    IL_0285:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_028a:  ldloc.s    CS$4$0001
+    IL_028c:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0291:  ldc.i4     0x214
+    IL_0296:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_029b:  brtrue     IL_019c
+    IL_02a0:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02a5:  ldc.i4     0x215
+    IL_02aa:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_02af:  leave      IL_035e
+  }  // end .try
+  finally
+  {
+    IL_02b4:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02b9:  ldc.i4     0x216
+    IL_02be:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_02c3:  ldloc.s    CS$5$0000
+    IL_02c5:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02ca:  ldc.i4     0x217
+    IL_02cf:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_02d4:  ldnull
+    IL_02d5:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02da:  ldc.i4     0x218
+    IL_02df:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_02e4:  ceq
+    IL_02e6:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02eb:  ldc.i4     0x219
+    IL_02f0:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_02f5:  stloc.s    CS$4$0001
+    IL_02f7:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_02fc:  ldc.i4     0x21a
+    IL_0301:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0306:  ldloc.s    CS$4$0001
+    IL_0308:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_030d:  ldc.i4     0x21b
+    IL_0312:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0317:  brtrue.s   IL_034e
+    IL_0319:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_031e:  ldc.i4     0x21c
+    IL_0323:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0328:  ldloc.s    CS$5$0000
+    IL_032a:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_032f:  ldc.i4     0x21d
+    IL_0334:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_0339:  callvirt   instance void [mscorlib]System.IDisposable::Dispose()
+    IL_033e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0343:  ldc.i4     0x21e
+    IL_0348:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_034d:  nop
+    IL_034e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+    IL_0353:  ldc.i4     0x21f
+    IL_0358:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                          int32)
+    IL_035d:  endfinally
+  }  // end handler
+  IL_035e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0363:  ldc.i4     0x220
+  IL_0368:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_036d:  nop
+  IL_036e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0373:  ldc.i4     0x221
+  IL_0378:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_037d:  ldloc.0
+  IL_037e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0383:  ldc.i4     0x222
+  IL_0388:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_038d:  ldarg.0
+  IL_038e:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0393:  ldc.i4     0x223
+  IL_0398:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_039d:  newobj     instance void [Mono.Cecil]Mono.Cecil.WriterParameters::.ctor()
+  IL_03a2:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03a7:  ldc.i4     0x224
+  IL_03ac:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_03b1:  stloc.s    '<>g__initLocal5'
+  IL_03b3:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03b8:  ldc.i4     0x225
+  IL_03bd:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_03c2:  ldloc.s    '<>g__initLocal5'
+  IL_03c4:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03c9:  ldc.i4     0x226
+  IL_03ce:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_03d3:  ldc.i4.1
+  IL_03d4:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03d9:  ldc.i4     0x227
+  IL_03de:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_03e3:  callvirt   instance void [Mono.Cecil]Mono.Cecil.WriterParameters::set_WriteSymbols(bool)
+  IL_03e8:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03ed:  ldc.i4     0x228
+  IL_03f2:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_03f7:  nop
+  IL_03f8:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_03fd:  ldc.i4     0x229
+  IL_0402:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0407:  ldloc.s    '<>g__initLocal5'
+  IL_0409:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_040e:  ldc.i4     0x22a
+  IL_0413:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0418:  callvirt   instance void [Mono.Cecil]Mono.Cecil.AssemblyDefinition::Write(string,
+                                                                                      class [Mono.Cecil]Mono.Cecil.WriterParameters)
+  IL_041d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0422:  ldc.i4     0x22b
+  IL_0427:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_042c:  nop
+  IL_042d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0432:  ldc.i4     0x22c
+  IL_0437:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_043c:  ldtoken    [Counter]Gaillard.SharpCover.Counter
+  IL_0441:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0446:  ldc.i4     0x22d
+  IL_044b:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0450:  call       class [mscorlib]System.Type [mscorlib]System.Type::GetTypeFromHandle(valuetype [mscorlib]System.RuntimeTypeHandle)
+  IL_0455:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_045a:  ldc.i4     0x22e
+  IL_045f:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0464:  callvirt   instance class [mscorlib]System.Reflection.Assembly [mscorlib]System.Type::get_Assembly()
+  IL_0469:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_046e:  ldc.i4     0x22f
+  IL_0473:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0478:  callvirt   instance string [mscorlib]System.Reflection.Assembly::get_Location()
+  IL_047d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0482:  ldc.i4     0x230
+  IL_0487:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_048c:  stloc.3
+  IL_048d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0492:  ldc.i4     0x231
+  IL_0497:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_049c:  ldloc.3
+  IL_049d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04a2:  ldc.i4     0x232
+  IL_04a7:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_04ac:  ldarg.0
+  IL_04ad:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04b2:  ldc.i4     0x233
+  IL_04b7:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_04bc:  call       string [mscorlib]System.IO.Path::GetDirectoryName(string)
+  IL_04c1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04c6:  ldc.i4     0x234
+  IL_04cb:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_04d0:  ldloc.3
+  IL_04d1:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04d6:  ldc.i4     0x235
+  IL_04db:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_04e0:  call       string [mscorlib]System.IO.Path::GetFileName(string)
+  IL_04e5:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04ea:  ldc.i4     0x236
+  IL_04ef:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_04f4:  call       string [mscorlib]System.IO.Path::Combine(string,
+                                                                string)
+  IL_04f9:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_04fe:  ldc.i4     0x237
+  IL_0503:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0508:  ldc.i4.1
+  IL_0509:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_050e:  ldc.i4     0x238
+  IL_0513:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_0518:  call       void [mscorlib]System.IO.File::Copy(string,
+                                                           string,
+                                                           bool)
+  IL_051d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0522:  ldc.i4     0x239
+  IL_0527:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_052c:  nop
+  IL_052d:  ldstr      "D:\\work\\codeCoverage\\SharpCover\\coverageHits"
+  IL_0532:  ldc.i4     0x23a
+  IL_0537:  call       void [Counter]Gaillard.SharpCover.Counter::Count(string,
+                                                                        int32)
+  IL_053c:  ret
+} // end of method Program::Instrument
+
